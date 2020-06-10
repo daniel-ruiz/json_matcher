@@ -23,5 +23,15 @@ defmodule JSONMatcherTest do
 
       assert JSONMatcher.match(%{gender: "male"}, json) == false
     end
+
+    test "does not match JSON when pattern key is found but not its value" do
+      json = %{
+        name: "John",
+        surname: "Doe",
+        age: 30,
+      }
+
+      assert JSONMatcher.match(%{surname: "Johnson"}, json) == false
+    end
   end
 end
