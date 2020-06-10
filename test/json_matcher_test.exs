@@ -14,6 +14,23 @@ defmodule JSONMatcherTest do
       assert JSONMatcher.match(pattern, json) == true
     end
 
+    test "matches JSON when all key-value pairs in pattern are in the target" do
+      json = %{
+        name: "John",
+        surname: "Doe",
+        age: 30,
+        is_smoker: false
+      }
+
+      pattern = %{
+        name: "John",
+        is_smoker: false,
+        age: 30
+      }
+
+      assert JSONMatcher.match(pattern, json) == true
+    end
+
     test "does not match JSON when key is not found" do
       json = %{
         name: "John",
