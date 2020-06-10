@@ -25,6 +25,10 @@ defmodule JSONMatcherTest do
       assert JSONMatcher.match(pattern, @target_json) == true
     end
 
+    test "matches JSON when pattern is an empty map" do
+      assert JSONMatcher.match(%{}, @target_json) == true
+    end
+
     test "does not match JSON when key is not found" do
       pattern = %{gender: "male"}
 
