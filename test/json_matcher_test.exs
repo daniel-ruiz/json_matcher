@@ -67,5 +67,22 @@ defmodule JSONMatcherTest do
 
       assert JSONMatcher.match(%{surname: "Johnson"}, json) == false
     end
+
+    test "does not match JSON when pattern has several different values" do
+      json = %{
+        name: "John",
+        surname: "Doe",
+        age: 30,
+        is_smoker: false
+      }
+
+      pattern = %{
+        name: "Jane",
+        surname: "Doe",
+        is_smoker: true
+      }
+
+      assert JSONMatcher.match(pattern, json) == false
+    end
   end
 end
